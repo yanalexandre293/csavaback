@@ -33,3 +33,15 @@ public class Model
 
 2 - CRIAR DbContext ---
 
+using Microsoft.EntityFrameworkCore;
+
+public class AppDbContext : DbContext
+{
+    public DbSet<Model> Models{ get; set; }
+
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder); 
+    }
+}
