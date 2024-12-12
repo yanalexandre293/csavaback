@@ -5,20 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Disciplina
 {
     [Key]
-    public int Id { get; set; }
+    public int? Id { get; set; }
     public string Nome { get; set; }
-
-    public List<Aula> Aulas { get; set; }
-
-    public Disciplina(string nome)
-    {
-        this.Id = 0;
-        this.Nome = nome;
-    }
-
-    public Disciplina()
-    {
-        this.Id = 0;
-        this.Nome = "";
-    }
+    public List<Aula>? Aulas { get; set; }
 }
