@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yansantos\\projetos\\cs\\ava\\ava.csproj": {}
+    "C:\\Users\\yan-a\\projetos\\csava\\ava.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yansantos\\projetos\\cs\\ava\\ava.csproj": {
+    "C:\\Users\\yan-a\\projetos\\csava\\ava.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yansantos\\projetos\\cs\\ava\\ava.csproj",
+        "projectUniqueName": "C:\\Users\\yan-a\\projetos\\csava\\ava.csproj",
         "projectName": "ava",
-        "projectPath": "C:\\Users\\yansantos\\projetos\\cs\\ava\\ava.csproj",
-        "packagesPath": "C:\\Users\\yansantos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yansantos\\projetos\\cs\\ava\\obj\\",
+        "projectPath": "C:\\Users\\yan-a\\projetos\\csava\\ava.csproj",
+        "packagesPath": "C:\\Users\\yan-a\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yan-a\\projetos\\csava\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\yansantos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\yan-a\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

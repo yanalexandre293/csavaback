@@ -24,8 +24,21 @@ public class ProfessorRepository
         return await _dbContext.Professores.FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task EditarProfessor(Professor )
+    public async Task EditarProfessor(Professor professor)
     {
+        var prof = await _dbContext.Professores.FirstOrDefaultAsync(p => p.Id == professor.Id);
+        prof.Nome = professor.Nome;
+        prof.Email = professor.Email;
+        prof.Senha = professor.Senha;
+        prof.TipoUsuario = professor.TipoUsuario;
+        prof.DisciplinasLecionadas = professor.DisciplinasLecionadas;
 
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task RemoverProfessor(int id)
+    {
+        _dbContext.Remove(await _dbContext.Professores.FirstOrDefaultAsync(professor => professor.Id == id));
+        await _dbContext.SaveChangesAsync();
     }
 }
