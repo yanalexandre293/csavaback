@@ -10,6 +10,69 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder); 
+        base.OnModelCreating(modelBuilder);
+        // Configuração da tabela "Aula"
+        modelBuilder.Entity<Aula>(entity =>
+        {
+            entity.HasKey(a => a.Id); // Chave primária
+            entity.Property(a => a.Nome)
+                .IsRequired()
+                .HasMaxLength(200); // Nome obrigatório com tamanho máximo
+
+            entity.HasOne(a => a.Disciplina) // Relação com Disciplina
+                .WithMany(d => d.Aulas)
+                .HasForeignKey(a => a.DisciplinaId)
+                .OnDelete(DeleteBehavior.Cascade); // Exclui as aulas se a disciplina for removida
+        });
+
+        // Configuração da tabela "Disciplina"
+        modelBuilder.Entity<Disciplina>(entity =>
+        {
+            entity.HasKey(d => d.Id); // Chave primária
+            entity.Property(d => d.Nome)
+                .IsRequired()
+                .HasMaxLength(150); // Nome obrigatório com tamanho máximo
+        });
+
+        // Configuração da tabela "Estudante"
+        modelBuilder.Entity<Estudante>(entity =>
+        {
+            entity.HasMany(e => e.DisciplinasCursadas) // Relação muitos-para-muitos com Disciplina
+                .WithMany(); // Configura a tabela intermediária automaticamente
+
+            entity.HasMany(e => e.AulasAssistidas) // Relação muitos-para-muitos com Aula
+                .WithMany();
+        });
+
+        // Configuração da tabela "Professor"
+        modelBuilder.Entity<Professor>(entity =>
+        {
+            entity.HasMany(p => p.DisciplinasLecionadas) // Relação 1:N com Disciplina
+                .WithOne()
+                .OnDelete(DeleteBehavior.Restrict); // Restrição para evitar exclusão em cascata
+        });
+
+        // Configuração da tabela "Usuario" (classe abstrata)
+        modelBuilder.Entity<Usuario>(entity =>
+        {
+            entity.HasKey(u => u.Id); // Chave primária
+            entity.Property(u => u.Nome)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(u => u.Email)
+                .IsRequired()
+                .HasMaxLength(150);
+
+            entity.Property(u => u.Senha)
+                .IsRequired();
+
+            entity.Property(u => u.TipoUsuario)
+                .IsRequired(); // Tipo de usuário obrigatório
+        });
+
+        // Herança: Configuração para "Estudante" e "Professor" herdarem "Usuario"
+        modelBuilder.Entity<Estudante>().HasBaseType<Usuario>();
+        modelBuilder.Entity<Professor>().HasBaseType<Usuario>();
     }
 }

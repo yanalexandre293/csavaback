@@ -6,6 +6,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools.DotNet
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet tool install --global dotnet-ef
 
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 
 
@@ -45,3 +46,49 @@ public class AppDbContext : DbContext
         base.OnModelCreating(modelBuilder); 
     }
 }
+
+2 - Criar Repository
+
+using Microsoft.EntityFrameworkCore;
+
+public class AulaRepository
+{
+    private readonly AppDbContext _dbContext;
+
+    public AulaRepository(AppDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+}
+
+3 - Criar Controllers 
+
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("[controller]")]
+public class AulaController : ControllerBase
+{
+    private readonly AulaRepository _aulaRepository;
+
+    public AulaController(AulaRepository aulaRepository)
+    {
+        _aulaRepository = aulaRepository;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AdicionarAula(Aula aula)
+    {
+        try
+        {
+            await _aulaRepository.AdicionarAula(aula);
+            return Ok();
+        }catch(Exception error)
+        {
+            return BadRequest(error);
+        }
+    }
+}
+
+

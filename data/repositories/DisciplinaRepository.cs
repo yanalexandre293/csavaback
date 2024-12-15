@@ -17,17 +17,17 @@ public class DisciplinaRepository
 
     public async Task<List<Disciplina>> BuscarTodasDisciplinas()
     {
-        return await _dbContext.Disciplinas.ToListAsync();
+        return await _dbContext.Disciplinas.Include(d => d.Aulas).ToListAsync();
     }
 
     public async Task<Disciplina> BuscarDisciplina(int id)
     {
-        return await _dbContext.Disciplinas.FirstOrDefaultAsync(d => d.Id == id);
+        return await _dbContext.Disciplinas.Include(d => d.Aulas).FirstOrDefaultAsync(d => d.Id == id);
     }
 
     public async Task EditarDisciplina(Disciplina disciplina)
     {
-        var disc = await _dbContext.Disciplinas.FirstOrDefaultAsync(d => d.Id == disciplina.Id);
+        var disc = await _dbContext.Disciplinas.Include(d => d.Aulas).FirstOrDefaultAsync(d => d.Id == disciplina.Id);
         disc.Nome = disciplina.Nome;
         disc.Aulas = disciplina.Aulas;
 
@@ -36,7 +36,7 @@ public class DisciplinaRepository
 
     public async Task RemoverDisciplina(int id)
     {
-        var disc = await _dbContext.Disciplinas.FirstOrDefaultAsync(d => d.Id == id);
+        var disc = await _dbContext.Disciplinas.Include(d => d.Aulas).FirstOrDefaultAsync(d => d.Id == id);
         _dbContext.Remove(disc);
         await _dbContext.SaveChangesAsync();
     }

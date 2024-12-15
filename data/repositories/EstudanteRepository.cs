@@ -17,17 +17,17 @@ public class EstudanteRepository
 
     public async Task<List<Estudante>> BuscarTodosEstudantes()
     {
-        return await _dbContext.Estudantes.ToListAsync();
+        return await _dbContext.Estudantes.Include(e => e.AulasAssistidas).Include(e => e.DisciplinasCursadas).ToListAsync();
     }
 
     public async Task<Estudante> BuscarEstudante(int id)
     {
-        return await _dbContext.Estudantes.FirstOrDefaultAsync(estudante => estudante.Id == id);
+        return await _dbContext.Estudantes.Include(e => e.AulasAssistidas).Include(e => e.DisciplinasCursadas).FirstOrDefaultAsync(estudante => estudante.Id == id);
     }
 
     public async Task EditarEstudante(Estudante estudante)
     {
-        var est = await _dbContext.Estudantes.FirstOrDefaultAsync(est => est.Id == estudante.Id);
+        var est = await _dbContext.Estudantes.Include(e => e.AulasAssistidas).Include(e => e.DisciplinasCursadas).FirstOrDefaultAsync(est => est.Id == estudante.Id);
         est.Nome = estudante.Nome;
         est.Email = estudante.Email;
         est.Senha = estudante.Senha;
@@ -40,7 +40,7 @@ public class EstudanteRepository
 
     public async Task RemoverEstudante(int id)
     {
-        var estudante = await _dbContext.Estudantes.FirstOrDefaultAsync(estudante => estudante.Id == id);
+        var estudante = await _dbContext.Estudantes.Include(e => e.AulasAssistidas).Include(e => e.DisciplinasCursadas).FirstOrDefaultAsync(estudante => estudante.Id == id);
         _dbContext.Remove(estudante);
         await _dbContext.SaveChangesAsync();
     }
