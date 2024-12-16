@@ -5,7 +5,7 @@
 namespace ava.Migrations
 {
     /// <inheritdoc />
-    public partial class _6 : Migration
+    public partial class Top : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

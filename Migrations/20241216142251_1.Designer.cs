@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ava.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241215231027_2")]
-    partial class _2
+    [Migration("20241216142251_1")]
+    partial class _1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -16,4 +16,6 @@ public class Aula
         this.Nome = nome;
         this.DisciplinaId = disciplinaId;
     }
+
+    protected Aula() { }
 }

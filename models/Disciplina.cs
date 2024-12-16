@@ -15,4 +15,6 @@ public class Disciplina
         this.Nome = nome;
         this.Aulas = new List<Aula>();
     }
+
+    protected Disciplina() { }
 }

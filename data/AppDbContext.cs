@@ -6,11 +6,25 @@ public class AppDbContext : DbContext
     public DbSet<Professor> Professores { get; set; }
     public DbSet<Disciplina> Disciplinas{ get; set; }
     public DbSet<Aula> Aulas { get; set; }
+    public DbSet<Admin> Admins { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Configuração de mapeamento por tipo (TPT)
+        modelBuilder.Entity<Admin>()
+            .ToTable("Usuarios"); // Tabela específica para Admins
+
+        modelBuilder.Entity<Professor>()
+            .ToTable("Usuarios"); // Tabela específica para Professores
+
+        modelBuilder.Entity<Estudante>()
+            .ToTable("Usuarios"); // Tabela específica para Estudantes
+
+
+            
         // Configuração da tabela "Aula"
         modelBuilder.Entity<Aula>(entity =>
         {
@@ -70,9 +84,17 @@ public class AppDbContext : DbContext
             entity.Property(u => u.TipoUsuario)
                 .IsRequired(); // Tipo de usuário obrigatório
         });
+        // Mapeia a hierarquia para uma única tabela
+        modelBuilder.Entity<Usuario>()
+            .ToTable("Usuarios") // Usa a mesma tabela para toda a hierarquia
+            .HasDiscriminator<TipoUsuario>("TipoUsuario")
+            .HasValue<Professor>(TipoUsuario.Professor)
+            .HasValue<Estudante>(TipoUsuario.Estudante)
+            .HasValue<Admin>(TipoUsuario.Admin);
 
         // Herança: Configuração para "Estudante" e "Professor" herdarem "Usuario"
         modelBuilder.Entity<Estudante>().HasBaseType<Usuario>();
         modelBuilder.Entity<Professor>().HasBaseType<Usuario>();
+        modelBuilder.Entity<Admin>().HasBaseType<Usuario>();
     }
 }

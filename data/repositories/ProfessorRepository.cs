@@ -12,6 +12,7 @@ public class ProfessorRepository
     public async Task AdicionarProfessor(Professor professor)
     {
         await _dbContext.Professores.AddAsync(professor);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task<List<Professor>> BuscarTodosProfessores()

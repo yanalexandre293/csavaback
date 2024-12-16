@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ava.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241215231537_3")]
-    partial class _3
+    [Migration("20241216150332_4")]
+    partial class _4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,6 +129,13 @@ namespace ava.Migrations
                     b.ToTable("Usuario");
 
                     b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("Admin", b =>
+                {
+                    b.HasBaseType("Usuario");
+
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("Estudante", b =>

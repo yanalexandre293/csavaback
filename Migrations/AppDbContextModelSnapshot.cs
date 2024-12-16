@@ -123,23 +123,38 @@ namespace ava.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuarios", (string)null);
 
-                    b.UseTptMappingStrategy();
+                    b.HasDiscriminator<int>("TipoUsuario");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("Admin", b =>
+                {
+                    b.HasBaseType("Usuario");
+
+                    b.ToTable("Usuarios", (string)null);
+
+                    b.HasDiscriminator().HasValue(0);
                 });
 
             modelBuilder.Entity("Estudante", b =>
                 {
                     b.HasBaseType("Usuario");
 
-                    b.ToTable("Estudante");
+                    b.ToTable("Usuarios", (string)null);
+
+                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("Professor", b =>
                 {
                     b.HasBaseType("Usuario");
 
-                    b.ToTable("Professor");
+                    b.ToTable("Usuarios", (string)null);
+
+                    b.HasDiscriminator().HasValue(2);
                 });
 
             modelBuilder.Entity("Aula", b =>
@@ -187,24 +202,6 @@ namespace ava.Migrations
                     b.HasOne("Estudante", null)
                         .WithMany()
                         .HasForeignKey("EstudanteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Estudante", b =>
-                {
-                    b.HasOne("Usuario", null)
-                        .WithOne()
-                        .HasForeignKey("Estudante", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Professor", b =>
-                {
-                    b.HasOne("Usuario", null)
-                        .WithOne()
-                        .HasForeignKey("Professor", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

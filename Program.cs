@@ -10,6 +10,7 @@ builder.Services.AddScoped<DisciplinaRepository>();
 builder.Services.AddScoped<AulaRepository>();
 builder.Services.AddScoped<EstudanteRepository>();
 builder.Services.AddScoped<ProfessorRepository>();
+builder.Services.AddScoped<AdminRepository>();
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("Connection")));
 
