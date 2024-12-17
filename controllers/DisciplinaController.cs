@@ -62,7 +62,7 @@ public class DisciplinaController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> EditarAula(Disciplina disciplina)
+    public async Task<IActionResult> EditarDisciplina(Disciplina disciplina)
     {
         try
         {

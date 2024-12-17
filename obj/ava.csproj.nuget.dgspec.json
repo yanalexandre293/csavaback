@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yansantos\\projetos\\cs\\csava\\ava.csproj": {}
+    "C:\\Users\\yansantos\\projetos\\cs\\csavaback\\ava.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yansantos\\projetos\\cs\\csava\\ava.csproj": {
+    "C:\\Users\\yansantos\\projetos\\cs\\csavaback\\ava.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yansantos\\projetos\\cs\\csava\\ava.csproj",
+        "projectUniqueName": "C:\\Users\\yansantos\\projetos\\cs\\csavaback\\ava.csproj",
         "projectName": "ava",
-        "projectPath": "C:\\Users\\yansantos\\projetos\\cs\\csava\\ava.csproj",
+        "projectPath": "C:\\Users\\yansantos\\projetos\\cs\\csavaback\\ava.csproj",
         "packagesPath": "C:\\Users\\yansantos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yansantos\\projetos\\cs\\csava\\obj\\",
+        "outputPath": "C:\\Users\\yansantos\\projetos\\cs\\csavaback\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yansantos\\AppData\\Roaming\\NuGet\\NuGet.Config",

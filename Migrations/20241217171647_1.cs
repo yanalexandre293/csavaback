@@ -12,7 +12,7 @@ namespace ava.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Usuario",
+                name: "Usuarios",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -24,41 +24,7 @@ namespace ava.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuario", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Estudante",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Estudante", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Estudante_Usuario_Id",
-                        column: x => x.Id,
-                        principalTable: "Usuario",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Professor",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Professor", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Professor_Usuario_Id",
-                        column: x => x.Id,
-                        principalTable: "Usuario",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,9 +40,9 @@ namespace ava.Migrations
                 {
                     table.PrimaryKey("PK_Disciplina", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Disciplina_Professor_ProfessorId",
+                        name: "FK_Disciplina_Usuarios_ProfessorId",
                         column: x => x.ProfessorId,
-                        principalTable: "Professor",
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -118,9 +84,9 @@ namespace ava.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DisciplinaEstudante_Estudante_EstudanteId",
+                        name: "FK_DisciplinaEstudante_Usuarios_EstudanteId",
                         column: x => x.EstudanteId,
-                        principalTable: "Estudante",
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -142,9 +108,9 @@ namespace ava.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AulaEstudante_Estudante_EstudanteId",
+                        name: "FK_AulaEstudante_Usuarios_EstudanteId",
                         column: x => x.EstudanteId,
-                        principalTable: "Estudante",
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -183,16 +149,10 @@ namespace ava.Migrations
                 name: "Aula");
 
             migrationBuilder.DropTable(
-                name: "Estudante");
-
-            migrationBuilder.DropTable(
                 name: "Disciplina");
 
             migrationBuilder.DropTable(
-                name: "Professor");
-
-            migrationBuilder.DropTable(
-                name: "Usuario");
+                name: "Usuarios");
         }
     }
 }
