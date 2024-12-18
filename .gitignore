@@ -2,3 +2,9 @@
 
 # dependencies
 /obj
+/bin
+/appsettings.Development.json
+/appsettings.json
+/ava.csproj
+/ava.http
+/ava.sln
