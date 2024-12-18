@@ -18,7 +18,7 @@ public class AulaController : ControllerBase
         try
         {
             await _aulaRepository.AdicionarAula(aula);
-            return Ok();
+            return Ok(aula);
         }catch(Exception error)
         {
             return BadRequest(error);
