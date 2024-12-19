@@ -12,6 +12,19 @@ namespace ava.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Disciplina",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nome = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Disciplina", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -25,26 +38,6 @@ namespace ava.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Disciplina",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nome = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
-                    ProfessorId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Disciplina", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Disciplina_Usuarios_ProfessorId",
-                        column: x => x.ProfessorId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -126,11 +119,6 @@ namespace ava.Migrations
                 column: "EstudanteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Disciplina_ProfessorId",
-                table: "Disciplina",
-                column: "ProfessorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DisciplinaEstudante_EstudanteId",
                 table: "DisciplinaEstudante",
                 column: "EstudanteId");
@@ -149,10 +137,10 @@ namespace ava.Migrations
                 name: "Aula");
 
             migrationBuilder.DropTable(
-                name: "Disciplina");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Disciplina");
         }
     }
 }

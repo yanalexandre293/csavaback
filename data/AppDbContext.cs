@@ -58,14 +58,6 @@ public class AppDbContext : DbContext
                 .WithMany();
         });
 
-        // Configuração da tabela "Professor"
-        modelBuilder.Entity<Professor>(entity =>
-        {
-            entity.HasMany(p => p.DisciplinasLecionadas) // Relação 1:N com Disciplina
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict); // Restrição para evitar exclusão em cascata
-        });
-
         // Configuração da tabela "Usuario" (classe abstrata)
         modelBuilder.Entity<Usuario>(entity =>
         {

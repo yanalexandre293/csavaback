@@ -17,29 +17,28 @@ public class ProfessorRepository
 
     public async Task<List<Professor>> BuscarTodosProfessores()
     {
-        return await _dbContext.Professores.Include(p => p.DisciplinasLecionadas).ToListAsync();
+        return await _dbContext.Professores.ToListAsync();
     }
 
     public async Task<Professor> BuscarProfessor(int id)
     {
-        return await _dbContext.Professores.Include(p => p.DisciplinasLecionadas).FirstOrDefaultAsync(p => p.Id == id);
+        return await _dbContext.Professores.FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task EditarProfessor(Professor professor)
     {
-        var prof = await _dbContext.Professores.Include(p => p.DisciplinasLecionadas).FirstOrDefaultAsync(p => p.Id == professor.Id);
+        var prof = await _dbContext.Professores.FirstOrDefaultAsync(p => p.Id == professor.Id);
         prof.Nome = professor.Nome;
         prof.Email = professor.Email;
         prof.Senha = professor.Senha;
         prof.TipoUsuario = professor.TipoUsuario;
-        prof.DisciplinasLecionadas = professor.DisciplinasLecionadas;
 
         await _dbContext.SaveChangesAsync();
     }
 
     public async Task RemoverProfessor(int id)
     {
-        _dbContext.Remove(await _dbContext.Professores.Include(p => p.DisciplinasLecionadas).FirstOrDefaultAsync(professor => professor.Id == id));
+        _dbContext.Remove(await _dbContext.Professores.FirstOrDefaultAsync(professor => professor.Id == id));
         await _dbContext.SaveChangesAsync();
     }
 }

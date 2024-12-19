@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 public class Estudante : Usuario
 {
     public List<Disciplina>? DisciplinasCursadas { get; set; }

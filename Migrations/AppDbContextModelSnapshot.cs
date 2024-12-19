@@ -71,12 +71,7 @@ namespace ava.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
-                    b.Property<int?>("ProfessorId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProfessorId");
 
                     b.ToTable("Disciplina");
                 });
@@ -183,14 +178,6 @@ namespace ava.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Disciplina", b =>
-                {
-                    b.HasOne("Professor", null)
-                        .WithMany("DisciplinasLecionadas")
-                        .HasForeignKey("ProfessorId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("DisciplinaEstudante", b =>
                 {
                     b.HasOne("Disciplina", null)
@@ -209,11 +196,6 @@ namespace ava.Migrations
             modelBuilder.Entity("Disciplina", b =>
                 {
                     b.Navigation("Aulas");
-                });
-
-            modelBuilder.Entity("Professor", b =>
-                {
-                    b.Navigation("DisciplinasLecionadas");
                 });
 #pragma warning restore 612, 618
         }

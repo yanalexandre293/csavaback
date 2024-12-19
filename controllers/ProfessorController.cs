@@ -6,10 +6,12 @@ using Newtonsoft.Json;
 public class ProfessorController : ControllerBase
 {
     private readonly ProfessorRepository _profressorRepository;
+    private readonly DisciplinaRepository _disciplinaRepository;
 
-    public ProfessorController(ProfessorRepository profressorRepository)
+    public ProfessorController(ProfessorRepository profressorRepository, DisciplinaRepository disciplinaRepository)
     {
         _profressorRepository = profressorRepository;
+        _disciplinaRepository = disciplinaRepository;
     }
 
     [HttpPost]

@@ -1,9 +1,5 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 public class Professor : Usuario
 {
-    public List<Disciplina>? DisciplinasLecionadas { get; set; }
-
     public Professor(string nome, string email, string senha)
     {
         this.Nome = nome;
