@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ava.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241219132056_1")]
+    [Migration("20241220142554_1")]
     partial class _1
     {
         /// <inheritdoc />
@@ -33,6 +33,10 @@ namespace ava.Migrations
 
                     b.Property<int>("DisciplinaId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Nome")
                         .IsRequired()

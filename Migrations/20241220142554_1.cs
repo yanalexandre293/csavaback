@@ -47,7 +47,8 @@ namespace ava.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    DisciplinaId = table.Column<int>(type: "integer", nullable: false)
+                    DisciplinaId = table.Column<int>(type: "integer", nullable: false),
+                    Link = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

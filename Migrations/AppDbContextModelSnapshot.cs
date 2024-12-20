@@ -31,6 +31,10 @@ namespace ava.Migrations
                     b.Property<int>("DisciplinaId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(200)

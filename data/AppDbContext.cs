@@ -32,6 +32,9 @@ public class AppDbContext : DbContext
             entity.Property(a => a.Nome)
                 .IsRequired()
                 .HasMaxLength(200); // Nome obrigatório com tamanho máximo
+            
+            entity.Property(a => a.Link)
+                .IsRequired();
 
             entity.HasOne(a => a.Disciplina) // Relação com Disciplina
                 .WithMany(d => d.Aulas)
